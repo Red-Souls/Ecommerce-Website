@@ -1,0 +1,23 @@
+{% extends 'components/base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="form-floating my-5">
+            <input type="text" class="form-control" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="254" required="" id="id_username">
+            <label for="id_username">Email</label>
+        </div>
+        <div class="form-floating my-5">
+            <input type="password" class="form-control" name="password" autocomplete="current-password" required="" id="id_password">
+            <label for="id_password">Password</label>
+          </div>
+        <input type="hidden" name="next" value="/"/>
+        <button class="btn btn-primary">Login</button>
+    </form>
+</div>
+
+{% endblock %}

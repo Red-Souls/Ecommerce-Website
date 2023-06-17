@@ -1,0 +1,7 @@
+.carousel-item img {
+    filter: brightness(45%);
+}
+
+.carousel-item .carousel-caption {
+    top: 45%;
+}
