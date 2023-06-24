@@ -19,3 +19,10 @@ class RegisterView(View):
             return render(request, 'pages/register.html', {
                 'form': form
             })
+        
+class ProfileView(View):
+    def get(self, request, id):
+        profile = User.objects.get(id = id)
+        return render(request, 'pages/profile.html', {
+            'profile': profile,
+        })

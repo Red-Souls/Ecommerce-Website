@@ -3,4 +3,6 @@ from .views import*
 
 urlpatterns = [
     path('', HomeView.as_view()),
+    path('<int:id>/', ProductDetail.as_view()),
+    path('search/', SearchView.as_view()),
 ]
