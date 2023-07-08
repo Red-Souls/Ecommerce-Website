@@ -1,0 +1,29 @@
+{% extends 'components/base.html' %}
+
+{% load humanize %}
+{% block title %}Order{% endblock %}
+
+{% block content %}
+
+<div class="container my-3">
+    <div class="row">
+        <div class="col">
+            <img src="../../media/{{product.image}}" alt="" width="500" height="500">
+        </div>
+        <div class="col">
+            <div>
+                <h1>{{product.name}}</h1>
+                <p style="color: red;">{{product.price|intcomma}}đ</p>
+            </div>
+            <div>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button class="btn btn-primary">PURCHASE</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,14 +1,26 @@
 {% extends 'components/base.html' %}
 
+{% load humanize %}
 {% block title %}Search{% endblock %}
 
 {% block content %}
 
 <div class="container">
     <h1>You searched for {{search}}</h1>
-    {% for product in products %}
-        <h1><a href="/{{product.id}}/" style="text-decoration: none;">{{product.name}}</a></h1>
-    {% endfor %}
+    <div class="row row-cols-3 row-cols-md-3 g-4">
+        {% for product in products %}
+            <div class="col product">
+                <div class="card h-100">
+                    <img src="../../media/{{product.image}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{product.name}}</h5>
+                        <p style="color: red;">{{product.price|intcomma}}đ</p>
+                        <button class="order-button btn">ORDER</button>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 </div>
 
 {% endblock %}

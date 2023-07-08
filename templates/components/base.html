@@ -9,30 +9,33 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg sticky-top" style="background-color: #8696FE;">
+    <nav class="navbar navbar-expand-lg sticky-top" style="background-color: #282828;">
         <div class="container-fluid">
-            <a class="navbar-brand text-white" href="#">Shop</a>
+            <a class="navbar-brand text-white" href="/"><img src="http://tocotocotea.com/wp-content/uploads/2021/04/Logo-ngang-01.png" alt="" width="100" height="24"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link text-white" aria-current="page" href="/">Home</a>
+                        <a class="nav-link text-white" aria-current="page" href="/">TRANG CHỦ</a>
                     </li>
                     {% if not user.username %}
                         <li class="nav-item">
-                            <a class="nav-link text-white" aria-current="page" href="/user/register/">Register</a>
+                            <a class="nav-link text-white" aria-current="page" href="/user/register/">ĐĂNG KÝ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" aria-current="page" href="/user/login/">Login</a>
+                            <a class="nav-link text-white" aria-current="page" href="/user/login/">ĐĂNG NHẬP</a>
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link text-white" aria-current="page" href="/user/logout/">Logout</a>
+                            <a class="nav-link text-white" aria-current="page" href="/user/logout/">ĐĂNG XUẤT</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" aria-current="page" href="/user/{{user.id}}/">Welcome back {{user.username}}</a>
+                            <a class="nav-link text-white" aria-current="page" href="/user/{{user.id}}/">CHÀO MỪNG BẠN QUAY TRỞ LẠI {{user.username}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" aria-current="page" href="/cart/">GIỎ HÀNG</a>
                         </li>
                     {% endif %}
                 </ul>

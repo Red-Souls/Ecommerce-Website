@@ -3,5 +3,15 @@
 }
 
 .carousel-item .carousel-caption {
-    top: 45%;
+    top: 50%;
+}
+
+.cart-item {
+    background-color: #90EE90;
+    border-radius: 1rem;
+}
+
+.payment {
+    background-color: #90EE90;
+    border-radius: 1rem;
 }
