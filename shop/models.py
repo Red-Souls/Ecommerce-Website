@@ -50,3 +50,10 @@ class Cart(models.Model):
 
     def __str__(self):
         return self.user.username
+
+class Payment(models.Model):
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    address = models.CharField(max_length = 116)
+    phoneNumber = models.CharField(max_length = 116)
+    cartItem = models.ManyToManyField(CartItem)
+    price = models.IntegerField(default = 0)

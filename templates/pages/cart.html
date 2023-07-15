@@ -11,6 +11,7 @@
             {% for cartItem in cart %}
                 <div class="cart-item my-3 p-3">
                     <img src="../../media/{{cartItem.product.image}}" alt="" width="100" style="border-radius: 1rem;">
+                    <a href="/delete-cart-item/{{cartItem.id}}/" class="btn-close" aria-label="Close" style="margin-left: 450px;"></a>
                     <h6>{{cartItem.product.name}}</h6>
                     <p>Loại đồ uống: {{cartItem.get_drinkType_display}}</p>
                     <p>Size: {{cartItem.get_sizeType_display}}</p>
@@ -23,7 +24,15 @@
         <div class="col">
             <div class="payment my-3 p-3">
                 <h1 class="text-center">Thanh Toán</h1>
-                <a href="" style="color: red; text-decoration: none;">xóa tất cả</a>
+                {% if cart.count %}
+                    <a href="/remove-all-cart-item/" style="color: red; text-decoration: none;">xóa tất cả</a>
+                    <p style="color: red; text-decoration: none;">Tổng số tiền phải trả là: {{cost|intcomma}}đ</p>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <button class="btn btn-primary">CHECKOUT</button>
+                    </form>
+                {% endif %}
             </div>
         </div>
     </div>

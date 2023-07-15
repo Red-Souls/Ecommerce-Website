@@ -5,3 +5,8 @@ class OrderForm(forms.ModelForm):
     class Meta():
         model = CartItem
         fields = ['drinkType', 'sizeType', 'sugarType', 'toppingType']
+
+class PaymentForm(forms.ModelForm):
+    class Meta():
+        model = Payment
+        fields = ['address', 'phoneNumber']

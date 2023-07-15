@@ -41,12 +41,44 @@ class CartView(View):
 
         cart = Cart.objects.get(user = request.user)
         cartItem = cart.cartItem.all()
+        cost = 0
+        for i in cartItem:
+            cost += i.product.price
+
+        form = PaymentForm()
+
         return render(request, 'pages/cart.html', {
             'cart': cartItem,
+            'cost': cost,
+            'form': form,
         })
     
-    def delete(self, request):
-        pass
+    def post(self, request):
+        try:
+            Cart.objects.get(user = request.user)
+        except:
+            cart = Cart()
+            cart.user = request.user
+            cart.save()
+
+        cart = Cart.objects.get(user = request.user)
+        cartItem = cart.cartItem.all()
+        cost = 0
+        for i in cartItem:
+            cost += i.product.price
+        form = PaymentForm(request.POST)
+        form.instance.user = request.user
+        form.instance.price = cost
+        if form.is_valid():
+            form.save()
+            form.instance.cartItem.set(cartItem)
+            form.save()
+            return redirect('/remove-all-cart-item/')
+        return render(request, 'pages/cart.html', {
+            'cart': cartItem,
+            'cost': cost,
+            'form': form,
+        })
     
 class OrderView(View):
     def get(self, request, id):
@@ -73,3 +105,18 @@ class OrderView(View):
             'product': product,
             'form': form,
         })
+    
+class RemoveAllCartItem(View):
+    def get(self, request):
+        cart = Cart.objects.get(user = request.user)
+        cartItem = cart.cartItem.all()
+        for i in cartItem:
+            cart.cartItem.remove(i)
+        return redirect('/cart/')
+    
+class DeleteCartItem(View):
+    def get(self, request, id):
+        cart = Cart.objects.get(user = request.user)
+        cartItem = cart.cartItem.get(id = id)
+        cart.cartItem.remove(cartItem)
+        return redirect('/cart/')
