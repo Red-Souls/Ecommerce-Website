@@ -1,0 +1,25 @@
+{% extends 'components/base.html' %}
+
+{% block title %}Blog{% endblock %}
+
+{% block content %}
+
+<div class="container mx-5 my-5">
+    <div class="row row-cols-3 row-cols-md-3 g-4">
+        {% for post in posts %}
+            <a href="/blog/{{post.id}}/" style="text-decoration: none; color: black;">
+                <div class="col product">
+                    <div class="card h-100">
+                        <img src="../../media/{{post.image}}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{post.title}}</h5>
+                            <p class="card-content">{{post.subTitle}}</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

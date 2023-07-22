@@ -5,37 +5,43 @@
 
 {% block content %}
 
-<div class="container my-3">
-    <div class="row">
-        <div class="col">
-            {% for cartItem in cart %}
-                <div class="cart-item my-3 p-3">
-                    <img src="../../media/{{cartItem.product.image}}" alt="" width="100" style="border-radius: 1rem;">
-                    <a href="/delete-cart-item/{{cartItem.id}}/" class="btn-close" aria-label="Close" style="margin-left: 450px;"></a>
-                    <h6>{{cartItem.product.name}}</h6>
-                    <p>Loại đồ uống: {{cartItem.get_drinkType_display}}</p>
-                    <p>Size: {{cartItem.get_sizeType_display}}</p>
-                    <p>Phần trăm đường: {{cartItem.get_sugarType_display}}</p>
-                    <p>Topping đi kèm: {{cartItem.get_toppingType_display}}</p>
-                    <p>Giá 1 ly: <span style="color: red;">{{cartItem.product.price|intcomma}}đ</span></p>
+{% if user.username %}
+    <div class="container my-3">
+        <div class="row">
+            <div class="col">
+                {% for cartItem in cart %}
+                    <div class="cart-item my-3 p-3">
+                        <img src="../../media/{{cartItem.product.image}}" alt="" width="100" style="border-radius: 1rem;">
+                        <a href="/delete-cart-item/{{cartItem.id}}/" class="btn-close" aria-label="Close" style="margin-left: 450px;"></a>
+                        <h6>{{cartItem.product.name}}</h6>
+                        <p>Loại đồ uống: {{cartItem.get_drinkType_display}}</p>
+                        <p>Size: {{cartItem.get_sizeType_display}}</p>
+                        <p>Phần trăm đường: {{cartItem.get_sugarType_display}}</p>
+                        <p>Topping đi kèm: {{cartItem.get_toppingType_display}}</p>
+                        <p>Giá 1 ly: <span style="color: red;">{{cartItem.product.price|intcomma}}đ</span></p>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col">
+                <div class="payment my-3 p-3">
+                    <h1 class="text-center">Thanh Toán</h1>
+                    {% if cart.count %}
+                        <a href="/remove-all-cart-item/" style="color: red; text-decoration: none;">xóa tất cả</a>
+                        <p style="color: red; text-decoration: none;">Tổng số tiền phải trả là: {{cost|intcomma}}đ</p>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            {{form.as_p}}
+                            <button class="btn btn-primary">CHECKOUT</button>
+                        </form>
+                    {% endif %}
                 </div>
-            {% endfor %}
-        </div>
-        <div class="col">
-            <div class="payment my-3 p-3">
-                <h1 class="text-center">Thanh Toán</h1>
-                {% if cart.count %}
-                    <a href="/remove-all-cart-item/" style="color: red; text-decoration: none;">xóa tất cả</a>
-                    <p style="color: red; text-decoration: none;">Tổng số tiền phải trả là: {{cost|intcomma}}đ</p>
-                    <form action="" method="post">
-                        {% csrf_token %}
-                        {{form.as_p}}
-                        <button class="btn btn-primary">CHECKOUT</button>
-                    </form>
-                {% endif %}
             </div>
         </div>
     </div>
-</div>
+{% else %}
+    <h1>You must log in to use our sevices.</h1>
+    <p><a href="/user/login/">Login</a> if you already have an account.</p>
+    <p><a href="/user/register/">Register</a> if you don't have an account.</p>
+{% endif %}
 
 {% endblock %}

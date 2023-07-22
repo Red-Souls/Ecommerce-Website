@@ -92,7 +92,6 @@ class OrderView(View):
     def post(self, request, id):
         product = Product.objects.get(id = id)
         cart = Cart.objects.get(user = request.user)
-        print(cart)
         form = OrderForm(request.POST)
         form.instance.product = product
         form.instance.price = product.price

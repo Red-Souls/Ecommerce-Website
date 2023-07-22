@@ -1,0 +1,12 @@
+{% extends 'components/base.html' %}
+
+{% block title %}{{post.title}}{% endblock %}
+
+{% block content %}
+
+<div class="container my-5" style="background-color: aquamarine; border-radius: 1rem;">
+    <h1>{{post.title}}</h1>
+    <p>{{post.content|safe|linebreaks}}</p>
+</div>
+
+{% endblock %}
