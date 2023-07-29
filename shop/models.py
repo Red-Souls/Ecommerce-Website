@@ -42,6 +42,7 @@ class CartItem(models.Model):
     sizeType = models.CharField(default = 0, choices = sizeChoices)
     sugarType = models.CharField(default = 0, choices = sugarChoices)
     toppingType = models.CharField(default = 0, choices = toppingChoices)
+    quantity = models.IntegerField(default = 0)
     price = models.IntegerField(default = 0)
     
 class Cart(models.Model):

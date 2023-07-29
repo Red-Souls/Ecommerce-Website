@@ -19,6 +19,7 @@
                         <p>Phần trăm đường: {{cartItem.get_sugarType_display}}</p>
                         <p>Topping đi kèm: {{cartItem.get_toppingType_display}}</p>
                         <p>Giá 1 ly: <span style="color: red;">{{cartItem.product.price|intcomma}}đ</span></p>
+                        <p>Số lượng đặt hàng: <span style="color: red;">{{cartItem.quantity}}</span></p>
                     </div>
                 {% endfor %}
             </div>

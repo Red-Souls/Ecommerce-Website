@@ -43,7 +43,7 @@ class CartView(View):
         cartItem = cart.cartItem.all()
         cost = 0
         for i in cartItem:
-            cost += i.product.price
+            cost += i.product.price * i.quantity
 
         form = PaymentForm()
 
@@ -65,7 +65,7 @@ class CartView(View):
         cartItem = cart.cartItem.all()
         cost = 0
         for i in cartItem:
-            cost += i.product.price
+            cost += i.product.price * i.quantity
         form = PaymentForm(request.POST)
         form.instance.user = request.user
         form.instance.price = cost
