@@ -15,10 +15,12 @@ class BlogDetail(View):
         post = Post.objects.get(id = id)
         comments = Comment.objects.filter(post = id).order_by('-date')
         form = CommentForm()
+        recentPosts = Post.objects.all().order_by('-date')[0:3]
         return render(request, 'pages/blog_detail.html', {
             'post': post,
             'comments': comments,
             'form': form,
+            'recentPosts': recentPosts,
         })
     
     def post(self, request, id):
@@ -30,3 +32,15 @@ class BlogDetail(View):
             form.save()
             return redirect('/blog/')
         return redirect('/')
+
+class SearchView(View):
+    def get(self, request):
+        return render(request, 'pages/blog_search.html')
+    
+    def post(self, request):
+        search = request.POST['search']
+        posts = Post.objects.filter(title__contains = search)
+        return render(request, 'pages/blog_search.html', {
+            'search': search,
+            'posts': posts,
+        })
