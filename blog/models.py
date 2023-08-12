@@ -5,7 +5,6 @@ from user.models import User
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete = models.CASCADE)
     title = models.CharField(max_length = 116)
-    subTitle = models.CharField(max_length = 255)
     content = models.TextField()
     image = models.ImageField(upload_to = 'blog')
     date = models.DateTimeField(auto_now_add = True)

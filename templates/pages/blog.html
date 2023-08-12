@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<div class="container mx-5 my-5">
+<div class="container my-5">
     <div class="row row-cols-1 row-cols-md-3 g-4">
         {% for post in posts %}
         <div class="col">
@@ -13,7 +13,7 @@
                     <img src="../../media/{{post.image}}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{post.title}}</h5>
-                        <p class="card-text">{{post.subTitle}}</p>
+                        <p class="card-text">{{post.content}}</p>
                     </div>
                 </div>
             </a>

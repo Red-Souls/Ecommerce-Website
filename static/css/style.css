@@ -20,3 +20,14 @@
     background-color: white;
     border-radius: 1rem;
 }
+
+p {
+    overflow-wrap: break-word;
+}
+
+.card-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}

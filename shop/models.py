@@ -44,6 +44,9 @@ class CartItem(models.Model):
     toppingType = models.CharField(default = 0, choices = toppingChoices)
     quantity = models.IntegerField(default = 0)
     price = models.IntegerField(default = 0)
+
+    def __str__(self):
+        return str(self.product.name) + '-' + str(self.id)
     
 class Cart(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE)
